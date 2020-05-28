@@ -29,9 +29,17 @@ import static org.mockito.Mockito.when;
 class UserServiceImplTest {
     public static final long USER3_ID = 3L;
     public static final String USER3_NICKNAME = "user";
-    private final User user3 = new User(USER3_ID, USER3_NICKNAME, "password", null);
-    private final User user1 = new User(1L, "admin", "password", null);
-    private final User user2 = new User(2L, "artem", "password", null);
+
+
+    @Mock
+    private User user3;
+
+    @Mock
+    private User user1;
+
+    @Mock
+    private User user2;
+
     private final List<User> listOfTwoUsers = Arrays.asList(user1, user2);
 
     @Mock

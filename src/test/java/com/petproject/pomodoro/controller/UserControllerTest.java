@@ -27,12 +27,19 @@ class UserControllerTest {
     public static final long USER_ID = 1L;
     public static final long POM_ID = 3L;
     public static final String USER_NICKNAME = "user";
-    private final User user = new User(USER_ID, USER_NICKNAME, "password", null);
-    private final Pomodoro pomodoro = new Pomodoro(POM_ID, USER_ID, "test", 25,
-            LocalDateTime.of(2019, 5, 20, 9, 30, 20));
-    private final User user2 = new User(2L, "user2", "password", null);
-    private final Pomodoro pomodoro2 = new Pomodoro(4L, USER_ID, "test2", 25,
-            LocalDateTime.of(2019, 5, 20, 10, 0, 20));
+
+    @Mock
+    private User user;
+
+    @Mock
+    private Pomodoro pomodoro;
+
+    @Mock
+    private User user2;
+
+    @Mock
+    private Pomodoro pomodoro2;
+
     private final List<User> listOfTwoUsers = Arrays.asList(user, user2);
     private final List<Pomodoro> listOfTwoPomodoros = Arrays.asList(pomodoro, pomodoro2);
 
