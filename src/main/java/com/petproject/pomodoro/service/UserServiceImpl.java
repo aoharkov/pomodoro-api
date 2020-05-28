@@ -46,19 +46,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void update(User user, Long id) {
-        if (!id.equals(user.getId())) {
-            throw new BadRequestException();
-        }
-        update(user);
-    }
-
-    @Override
-    public void updateAll(List<User> users) {
-        users.forEach(this::update);
-    }
-
-    @Override
     public void delete(Long id) {
         userRepository.findById(id).ifPresent(userRepository::delete);
     }

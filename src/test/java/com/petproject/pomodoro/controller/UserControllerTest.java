@@ -62,12 +62,12 @@ class UserControllerTest {
 
     @Test
     void createNewPomodoroShouldSavePomodoro() {
-        when(pomodoroService.save(pomodoro, USER_ID)).thenReturn(POM_ID);
+        when(pomodoroService.save(pomodoro)).thenReturn(POM_ID);
 
         Long actual = userController.createNewPomodoro(USER_ID, pomodoro).getBody();
 
         assertEquals(POM_ID, actual);
-        verify(pomodoroService).save(pomodoro, USER_ID);
+        verify(pomodoroService).save(pomodoro);
     }
 
     @Test
@@ -101,30 +101,21 @@ class UserControllerTest {
     }
 
     @Test
-    void updateAllUsersShouldUpdateAllUsers() {
-        doNothing().when(userService).updateAll(listOfTwoUsers);
-
-        userController.updateAllUsers(listOfTwoUsers);
-
-        verify(userService).updateAll(listOfTwoUsers);
-    }
-
-    @Test
     void updateUserByIdShouldUser() {
-        doNothing().when(userService).update(user, USER_ID);
+        doNothing().when(userService).update(user);
 
         userController.updateUserById(USER_ID, user);
 
-        verify(userService).update(user, USER_ID);
+        verify(userService).update(user);
     }
 
     @Test
     void updatePomodoroForUserWithIdShouldUpdatePomodoro() {
-        doNothing().when(pomodoroService).update(pomodoro, POM_ID, USER_ID);
+        doNothing().when(pomodoroService).update(pomodoro);
 
-        userController.updatePomodoroForUserWithId(USER_ID, POM_ID, pomodoro);
+        userController.updatePomodoro(pomodoro);
 
-        verify(pomodoroService).update(pomodoro, POM_ID, USER_ID);
+        verify(pomodoroService).update(pomodoro);
     }
 
     @Test

@@ -42,7 +42,7 @@ public class UserController {
     public ResponseEntity<Long> createNewPomodoro(@PathVariable Long id, @Valid @RequestBody Pomodoro pomodoro) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(pomodoroService.save(pomodoro, id));
+                .body(pomodoroService.save(pomodoro));
     }
 
     @GetMapping
@@ -66,26 +66,17 @@ public class UserController {
                 .body(pomodoroService.findByUserId(id));
     }
 
-    @PutMapping
-    public ResponseEntity<Void> updateAllUsers(@Valid @RequestBody List<User> users) {
-        userService.updateAll(users);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .build();
-    }
-
     @PutMapping("/{id}")
     public ResponseEntity<Void> updateUserById(@PathVariable Long id, @Valid @RequestBody User user) {
-        userService.update(user, id);
+        userService.update(user);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .build();
     }
 
     @PutMapping("/{id}/pomodoros/{pomodoroId}")
-    public ResponseEntity<Void> updatePomodoroForUserWithId(@PathVariable Long id, @PathVariable Long pomodoroId,
-                                                            @Valid @RequestBody Pomodoro pomodoro) {
-        pomodoroService.update(pomodoro, pomodoroId, id);
+    public ResponseEntity<Void> updatePomodoro(@Valid @RequestBody Pomodoro pomodoro) {
+        pomodoroService.update(pomodoro);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .build();

@@ -19,13 +19,8 @@ public class PomodoroServiceImpl implements PomodoroService {
     }
 
     @Override
-    public Long save(Pomodoro pomodoro, Long userId) {
-        if (pomodoro.getUserId().equals(userId)) {
-            return pomodoroRepository.save(pomodoro).getId();
-        } else {
-            throw new BadRequestException();
-        }
-
+    public Long save(Pomodoro pomodoro) {
+        return pomodoroRepository.save(pomodoro).getId();
     }
 
     @Override
@@ -36,15 +31,6 @@ public class PomodoroServiceImpl implements PomodoroService {
     @Override
     public void update(Pomodoro pomodoro) {
         pomodoroRepository.save(pomodoro);
-    }
-
-    @Override
-    public void update(Pomodoro pomodoro, Long id, Long userId) {
-        if (pomodoro.getUserId().equals(userId) && id.equals(pomodoro.getId())) {
-            update(pomodoro);
-        } else {
-            throw new BadRequestException();
-        }
     }
 
     @Override
