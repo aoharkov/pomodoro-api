@@ -48,15 +48,10 @@ class PomodoroServiceImplTest {
     void saveShouldReturnId() {
         when(pomodoroRepository.save(pom1)).thenReturn(pom1);
 
-        Long actual = pomodoroService.save(pom1, USER_ID);
+        Long actual = pomodoroService.save(pom1);
 
         assertEquals(POM_ID, actual);
         verify(pomodoroRepository).save(pom1);
-    }
-
-    @Test
-    void saveShouldThrowBadRequestException() {
-        assertThrows(BadRequestException.class, () -> pomodoroService.save(pom1, USER_ID + 1));
     }
 
     @Test
@@ -73,19 +68,9 @@ class PomodoroServiceImplTest {
     void updateShouldSavePomodoro() {
         when(pomodoroRepository.save(pom1)).thenReturn(pom1);
 
-        pomodoroService.update(pom1, POM_ID, USER_ID);
+        pomodoroService.update(pom1);
 
         verify(pomodoroRepository).save(pom1);
-    }
-
-    @Test
-    void updateShouldThrowBadRequestExceptionBecauseIdIsDifferent() {
-        assertThrows(BadRequestException.class, () -> pomodoroService.update(pom1, POM_ID + 1, USER_ID));
-    }
-
-    @Test
-    void updateShouldThrowBadRequestExceptionBecauseUserIdIsDifferent() {
-        assertThrows(BadRequestException.class, () -> pomodoroService.update(pom1, POM_ID, USER_ID + 1));
     }
 
     @Test

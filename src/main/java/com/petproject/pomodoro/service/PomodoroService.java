@@ -6,13 +6,11 @@ import java.util.List;
 
 public interface PomodoroService {
 
-    Long save(Pomodoro pomodoro, Long userId);
+    Long save(Pomodoro pomodoro);
 
     List<Pomodoro> findByUserId(Long userId);
 
     void update(Pomodoro pomodoro);
-
-    void update(Pomodoro pomodoro, Long id, Long userId);
 
     void delete(Long id, Long userId);
 }

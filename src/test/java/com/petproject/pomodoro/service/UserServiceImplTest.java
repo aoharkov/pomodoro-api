@@ -1,7 +1,6 @@
 package com.petproject.pomodoro.service;
 
 import com.petproject.pomodoro.entity.User;
-import com.petproject.pomodoro.exceptions.BadRequestException;
 import com.petproject.pomodoro.exceptions.NoSuchElementException;
 import com.petproject.pomodoro.exceptions.SuchElementAlreadyExistsException;
 import com.petproject.pomodoro.repository.UserRepository;
@@ -20,13 +19,13 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceImplTest {
+
     public static final long USER3_ID = 3L;
     public static final String USER3_NICKNAME = "user";
     private final User user3 = new User(USER3_ID, USER3_NICKNAME, "password", null);
@@ -100,21 +99,6 @@ class UserServiceImplTest {
         userService.update(user3);
 
         verify(userRepository).save(user3);
-    }
-
-    @Test
-    void updateShouldThrowBadRequestException() {
-        assertThrows(BadRequestException.class, () -> userService.update(user3, 1L));
-    }
-
-    @Test
-    void updateAllShouldSaveTwice() {
-        when(userRepository.save(user1)).thenReturn(user1);
-        when(userRepository.save(user2)).thenReturn(user2);
-
-        userService.updateAll(listOfTwoUsers);
-
-        verify(userRepository, times(2)).save(any());
     }
 
     @Test
