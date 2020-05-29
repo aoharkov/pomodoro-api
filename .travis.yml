@@ -1,5 +1,15 @@
-language: java
+sudo: false
+install: true
+addons:
+  sonarcloud:
+    organization: aoharkov-github
+    token:
+      secure: "hPTySQCvYJb/smCIigcAJPq11YrZnduiflHwhKohh7pr/RQMWFDfWZqPpZAr+EmfZZJie6KdGv2rH0B5Pfu5aDkfhZH9S2BUpoEUeaFTpUF6SSDJBc8U7nsNraqutmAo3HCZ3vTWe6fWZSiPegno6Xhux+ZdE/N51FAndbtb87+a9DQoCvXhxPrR/Me/ambl8SVajAOXULhBnbj164uyNfVFQBT2+EQjBgiJx8VtfoJjtljGPOp03xPmnftXOtsCVcAvFcidtOBMpMo5F4I5Qjz5pi6QkZSiVIJ+rgkcuKm3/0E+sX7yu0DIfMrS5QbVSxltv4yDfoupJzmQ9E8j6nZz4VY7TCOE6AtoMu0IcsiUbGnQjtT4nFb46sGWidIPSECnDyc/Wz/0iXn51jhZFFjBhkW019J3qZIqE0JWwmPClMSm0Hf7qLGHpnsY+GBCPRt1bhMWdAnxhIJzcYMXZxrR/ZIpO1uY+LSlcozyjph+z3dkAybt5JNvfKi+7y75Mx2oDiVustaSEQBLHyC5hYKCgY7j1UzV8bZgUlAQCDXvZ0Pf1ZweE0sQRyTyeCuPlUJ35+xTUosKGpD5NZNp8qR6274mWSsRGJPpmatLNxGVAPPQ+mcnKoaK/z9TmkZvs+O6ULiSz123rK4zkEbNlVPzBgpC6Bn2shslm+9PWfQ="
+
 script:
-  - mvn clean package
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
+- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=aoharkov_pomodoro-api
+
+cache:
+  directories:
+  - "$HOME/.m2/repository"
+  - "$HOME/.sonar/cache"
