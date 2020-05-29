@@ -1,14 +1,12 @@
 package com.petproject.pomodoro.service;
 
-
 import com.petproject.pomodoro.config.UserPrincipal;
 import com.petproject.pomodoro.entity.User;
-import com.petproject.pomodoro.exceptions.NoSuchElementException;
+import com.petproject.pomodoro.exceptions.UserNotFoundException;
 import com.petproject.pomodoro.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,9 +20,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByNickname(username)
-                                  .orElseThrow(NoSuchElementException::new);
+    public UserDetails loadUserByUsername(String username) {
+        User user = userRepository
+                            .findByNickname(username)
+                            .orElseThrow(() -> new UserNotFoundException("User with username:" + username + "is not found"));
         return new UserPrincipal(user);
     }
 }

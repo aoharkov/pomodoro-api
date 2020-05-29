@@ -1,8 +1,7 @@
 package com.petproject.pomodoro.service;
 
 import com.petproject.pomodoro.entity.User;
-import com.petproject.pomodoro.exceptions.BadRequestException;
-import com.petproject.pomodoro.exceptions.NoSuchElementException;
+import com.petproject.pomodoro.exceptions.UserNotFoundException;
 import com.petproject.pomodoro.exceptions.SuchElementAlreadyExistsException;
 import com.petproject.pomodoro.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +31,7 @@ public class UserServiceImpl implements UserService {
     public User findById(Long id) {
         return userRepository
                 .findById(id)
-                .orElseThrow(NoSuchElementException::new);
+                .orElseThrow(() -> new UserNotFoundException("User with id: " + id + " is not found"));
     }
 
     @Override

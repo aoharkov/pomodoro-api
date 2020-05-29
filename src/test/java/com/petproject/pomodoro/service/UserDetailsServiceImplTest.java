@@ -2,7 +2,7 @@ package com.petproject.pomodoro.service;
 
 import com.petproject.pomodoro.config.UserPrincipal;
 import com.petproject.pomodoro.entity.User;
-import com.petproject.pomodoro.exceptions.NoSuchElementException;
+import com.petproject.pomodoro.exceptions.UserNotFoundException;
 import com.petproject.pomodoro.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -53,9 +53,9 @@ class UserDetailsServiceImplTest {
     }
 
     @Test
-    void loadUserByUsername_throws_NoSuchElementException_on_nonExistedUser() {
+    void loadUserByUsername_throws_UserNotFoundException_on_nonExistedUser() {
         when(userRepository.findByNickname(NICKNAME)).thenReturn(Optional.empty());
 
-        assertThrows(NoSuchElementException.class, () -> userDetailsService.loadUserByUsername(NICKNAME));
+        assertThrows(UserNotFoundException.class, () -> userDetailsService.loadUserByUsername(NICKNAME));
     }
 }
