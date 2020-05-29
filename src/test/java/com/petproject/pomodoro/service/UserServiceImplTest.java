@@ -26,11 +26,31 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class UserServiceImplTest {
 
-    public static final long USER3_ID = 3L;
-    public static final String USER3_NICKNAME = "user";
-    private final User user3 = new User(USER3_ID, USER3_NICKNAME, "password", null);
-    private final User user1 = new User(1L, "admin", "password", null);
-    private final User user2 = new User(2L, "artem", "password", null);
+    private static final long USER3_ID = 3L;
+    private static final String USER3_NICKNAME = "user";
+    private static final String PASSWORD = "password";
+
+    private final User user1 = User.builder()
+                                   .id(1L)
+                                   .nickname("admin")
+                                   .password(PASSWORD)
+                                   .pomodoroList(null)
+                                   .build();
+
+    private final User user2 = User.builder()
+                                   .id(2L)
+                                   .nickname("artem")
+                                   .password(PASSWORD)
+                                   .pomodoroList(null)
+                                   .build();
+
+    private final User user3 = User.builder()
+                                   .id(USER3_ID)
+                                   .nickname(USER3_NICKNAME)
+                                   .password(PASSWORD)
+                                   .pomodoroList(null)
+                                   .build();
+
     private final List<User> listOfTwoUsers = Arrays.asList(user1, user2);
 
     @Mock
@@ -40,7 +60,7 @@ class UserServiceImplTest {
     private UserServiceImpl userService;
 
     @AfterEach
-    public void resetMocks() {
+    void resetMocks() {
         Mockito.reset(userRepository);
     }
 
