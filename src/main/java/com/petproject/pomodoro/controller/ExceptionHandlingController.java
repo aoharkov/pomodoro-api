@@ -1,7 +1,7 @@
 package com.petproject.pomodoro.controller;
 
 import com.petproject.pomodoro.exceptions.BadRequestException;
-import com.petproject.pomodoro.exceptions.NoSuchElementException;
+import com.petproject.pomodoro.exceptions.UserNotFoundException;
 import com.petproject.pomodoro.exceptions.SuchElementAlreadyExistsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +18,8 @@ public class ExceptionHandlingController {
                 .build();
     }
 
-    @ExceptionHandler(NoSuchElementException.class)
-    public ResponseEntity<Void> handleNoSuchElementException() {
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<Void> handleUserNotFoundException() {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .build();

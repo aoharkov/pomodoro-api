@@ -8,3 +8,11 @@ INSERT INTO pomodoros VALUES
 (3, 2,'rest-hw1', 25, '2019-05-20 10:00:21'),
 (4, 2,'rest-hw1', 25, '2019-05-20 10:30:22'),
 (5, 2,'rest-hw2', 25, '2019-05-20 11:00:23');
+
+insert into roles VALUES
+(1, 'ADMIN'),
+(2, 'USER');
+
+INSERT INTO users_roles values
+(1, 2),
+(2, 2);
