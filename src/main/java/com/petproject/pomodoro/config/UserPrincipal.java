@@ -2,6 +2,7 @@ package com.petproject.pomodoro.config;
 
 import com.petproject.pomodoro.entity.Role;
 import com.petproject.pomodoro.entity.User;
+import lombok.EqualsAndHashCode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,6 +13,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+@EqualsAndHashCode
 public class UserPrincipal implements UserDetails {
 
     private User user;
