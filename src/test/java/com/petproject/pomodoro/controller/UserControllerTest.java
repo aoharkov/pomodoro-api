@@ -24,15 +24,45 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class UserControllerTest {
-    public static final long USER_ID = 1L;
-    public static final long POM_ID = 3L;
-    public static final String USER_NICKNAME = "user";
-    private final User user = new User(USER_ID, USER_NICKNAME, "password", null);
-    private final Pomodoro pomodoro = new Pomodoro(POM_ID, USER_ID, "test", 25,
-            LocalDateTime.of(2019, 5, 20, 9, 30, 20));
-    private final User user2 = new User(2L, "user2", "password", null);
-    private final Pomodoro pomodoro2 = new Pomodoro(4L, USER_ID, "test2", 25,
-            LocalDateTime.of(2019, 5, 20, 10, 0, 20));
+    private static final long USER_ID = 1L;
+    private static final long POM_ID = 3L;
+    private static final String USER_NICKNAME = "user";
+    private static final String PASSWORD = "password";
+
+    private static final LocalDateTime time1 =
+            LocalDateTime.of(2019, 5, 20, 9, 30, 20);
+
+    private static final LocalDateTime time2 =
+            LocalDateTime.of(2019, 5, 20, 10, 0, 20);
+
+    private final User user = User.builder()
+                                  .id(1L)
+                                  .nickname(USER_NICKNAME)
+                                  .password(PASSWORD)
+                                  .pomodoroList(null)
+                                  .build();
+
+    private final User user2 = User.builder()
+                                   .id(2L)
+                                   .nickname("artem")
+                                   .password(PASSWORD)
+                                   .pomodoroList(null)
+                                   .build();
+
+    private final Pomodoro pomodoro = Pomodoro.builder()
+                                              .id(POM_ID)
+                                              .userId(USER_ID)
+                                              .description("test")
+                                              .complitedDate(time1)
+                                              .build();
+
+    private final Pomodoro pomodoro2 = Pomodoro.builder()
+                                               .id(4L)
+                                               .userId(USER_ID)
+                                               .description("test2")
+                                               .complitedDate(time2)
+                                               .build();
+
     private final List<User> listOfTwoUsers = Arrays.asList(user, user2);
     private final List<Pomodoro> listOfTwoPomodoros = Arrays.asList(pomodoro, pomodoro2);
 
@@ -46,7 +76,7 @@ class UserControllerTest {
     private UserController userController;
 
     @AfterEach
-    public void resetMocks() {
+    void resetMocks() {
         Mockito.reset(userService, pomodoroService);
     }
 

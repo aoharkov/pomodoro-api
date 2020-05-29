@@ -25,13 +25,30 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class PomodoroServiceImplTest {
-    public static final long POM_ID = 3L;
-    public static final long USER_ID = 1L;
-    private final Pomodoro pom1 = new Pomodoro(POM_ID, USER_ID, "test", 25,
-            LocalDateTime.of(2019, 5, 20, 9, 30, 20));
-    private final Pomodoro pom2 = new Pomodoro(4L, USER_ID, "test2", 25,
-            LocalDateTime.of(2019, 5, 20, 10, 0, 20));
-    private final List<Pomodoro> pomodoroListOfSizeTwo = Arrays.asList(pom1, pom2);
+    private static final long POM_ID = 3L;
+    private static final long USER_ID = 1L;
+
+    private static final LocalDateTime time1 =
+            LocalDateTime.of(2019, 5, 20, 9, 30, 20);
+
+    private static final LocalDateTime time2 =
+            LocalDateTime.of(2019, 5, 20, 10, 0, 20);
+
+    private final Pomodoro pomodoro1 = Pomodoro.builder()
+                                              .id(POM_ID)
+                                              .userId(USER_ID)
+                                              .description("test")
+                                              .complitedDate(time1)
+                                              .build();
+
+    private final Pomodoro pomodoro2 = Pomodoro.builder()
+                                               .id(4L)
+                                               .userId(USER_ID)
+                                               .description("test2")
+                                               .complitedDate(time2)
+                                               .build();
+
+    private final List<Pomodoro> pomodoroListOfSizeTwo = Arrays.asList(pomodoro1, pomodoro2);
 
     @Mock
     private PomodoroRepository pomodoroRepository;
@@ -46,12 +63,12 @@ class PomodoroServiceImplTest {
 
     @Test
     void saveShouldReturnId() {
-        when(pomodoroRepository.save(pom1)).thenReturn(pom1);
+        when(pomodoroRepository.save(pomodoro1)).thenReturn(pomodoro1);
 
-        Long actual = pomodoroService.save(pom1);
+        Long actual = pomodoroService.save(pomodoro1);
 
         assertEquals(POM_ID, actual);
-        verify(pomodoroRepository).save(pom1);
+        verify(pomodoroRepository).save(pomodoro1);
     }
 
     @Test
@@ -66,21 +83,21 @@ class PomodoroServiceImplTest {
 
     @Test
     void updateShouldSavePomodoro() {
-        when(pomodoroRepository.save(pom1)).thenReturn(pom1);
+        when(pomodoroRepository.save(pomodoro1)).thenReturn(pomodoro1);
 
-        pomodoroService.update(pom1);
+        pomodoroService.update(pomodoro1);
 
-        verify(pomodoroRepository).save(pom1);
+        verify(pomodoroRepository).save(pomodoro1);
     }
 
     @Test
     void deleteShouldCallDelete() {
-        when(pomodoroRepository.findById(POM_ID)).thenReturn(Optional.of(pom1));
+        when(pomodoroRepository.findById(POM_ID)).thenReturn(Optional.of(pomodoro1));
 
         pomodoroService.delete(POM_ID, USER_ID);
 
         verify(pomodoroRepository).findById(POM_ID);
-        verify(pomodoroRepository).delete(pom1);
+        verify(pomodoroRepository).delete(pomodoro1);
     }
 
     @Test
@@ -95,7 +112,7 @@ class PomodoroServiceImplTest {
 
     @Test
     void deleteShouldThrowBadRequestException() {
-        when(pomodoroRepository.findById(POM_ID)).thenReturn(Optional.of(pom1));
+        when(pomodoroRepository.findById(POM_ID)).thenReturn(Optional.of(pomodoro1));
 
         assertThrows(BadRequestException.class, () -> pomodoroService.delete(POM_ID, USER_ID + 1));
         verify(pomodoroRepository).findById(POM_ID);
