@@ -1,6 +1,5 @@
 package com.petproject.pomodoro.config;
 
-import com.petproject.pomodoro.entity.Role;
 import com.petproject.pomodoro.entity.User;
 import lombok.EqualsAndHashCode;
 import org.springframework.security.core.GrantedAuthority;
@@ -8,9 +7,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 @EqualsAndHashCode
@@ -24,12 +21,8 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Set<Role> roles = user.getRoles();
-        if (Objects.isNull(roles)) {
-            return Collections.emptySet();
-        }
         Set<SimpleGrantedAuthority> grantedAuthorities = new HashSet<>();
-        roles.forEach(role -> grantedAuthorities.add(new SimpleGrantedAuthority(role.getName())));
+        grantedAuthorities.add(new SimpleGrantedAuthority(user.getRole().getAuthority()));
         return grantedAuthorities;
     }
 

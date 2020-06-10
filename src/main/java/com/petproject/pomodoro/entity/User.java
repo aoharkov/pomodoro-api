@@ -4,23 +4,22 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import net.minidev.json.JSONObject;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.ArrayList;
-import java.util.List;
-
+import java.time.ZonedDateTime;
 import java.util.Set;
+import java.util.TreeSet;
 
 @Entity
 @Data
@@ -31,8 +30,11 @@ import java.util.Set;
 public class User {
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+
+    @Column(name = "email", nullable = false)
+    private String email;
 
     @Column(name = "nickname", nullable = false)
     private String nickname;
@@ -40,21 +42,20 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @OneToMany(targetEntity = Pomodoro.class, cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<Pomodoro> pomodoroList = new ArrayList<>();
+    @Column(name = "role", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "users_roles",
-            joinColumns = { @JoinColumn(name = "user_id") },
-            inverseJoinColumns = { @JoinColumn(name = "role_id") }
-    )
-    private Set<Role> roles;
+    @Column(name = "registration_date", nullable = false)
+    private ZonedDateTime registrationDate;
 
-    public User(String nickname, String password, List<Pomodoro> pomodoroList) {
-        this.nickname = nickname;
-        this.password = password;
-        this.pomodoroList = pomodoroList;
-    }
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id")
+    private Set<Category> categories = new TreeSet<>();
+
+    @Column(name = "storage")
+    private JSONObject storage;
+
+    @Column(name = "default_lenght", nullable = false)
+    private Integer defaultLenght;
 }

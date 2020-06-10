@@ -26,7 +26,6 @@ class UserDetailsServiceImplTest {
                                   .id(1L)
                                   .nickname("admin")
                                   .password("PASSWORD")
-                                  .pomodoroList(null)
                                   .build();
 
     private UserPrincipal userPrincipal = new UserPrincipal(user);

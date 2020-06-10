@@ -1,24 +1,12 @@
 package com.petproject.pomodoro.entity;
 
-import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+public enum Role implements GrantedAuthority {
+    USER, ADMIN;
 
-@Data
-
-@Entity
-@Table(name = "roles")
-public class Role {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @Column(name = "name")
-    private String name;
+    @Override
+    public String getAuthority() {
+        return name();
+    }
 }

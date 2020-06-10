@@ -38,7 +38,7 @@ public class PomodoroServiceImpl implements PomodoroService {
         Optional<Pomodoro> pomodoroOptional = pomodoroRepository.findById(id);
         if (pomodoroOptional.isPresent()) {
             Pomodoro pomodoro = pomodoroOptional.get();
-            if (pomodoro.getUserId().equals(userId)) {
+            if (pomodoro.getUser().getId().equals(userId)) {
                 pomodoroRepository.delete(pomodoro);
             } else {
                 throw new BadRequestException();

@@ -7,11 +7,16 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @Entity
 @Builder
@@ -22,25 +27,36 @@ import java.time.LocalDateTime;
 public class Pomodoro {
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(name = "user_id", nullable = false)
-    private Long userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     @Column(name = "description")
     private String description;
 
-    @Column(name = "length", nullable = false)
-    private Integer length;
+    @Column(name = "declared_length", nullable = false)
+    private Integer declaredLength;
 
-    @Column(name = "complitedDate")
-    private LocalDateTime complitedDate;
+    @Column(name = "tracked_length", nullable = false)
+    private Integer trackedLength;
 
-    public Pomodoro(Long userId, String description, Integer length, LocalDateTime complitedDate) {
-        this.userId = userId;
-        this.description = description;
-        this.length = length;
-        this.complitedDate = complitedDate;
-    }
+    @Column(name = "status", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+    @Column(name = "started_date_time")
+    private ZonedDateTime startedDateTime;
+
+    @Column(name = "last_start")
+    private ZonedDateTime lastStart;
+
+    @Column(name = "finished_date_time")
+    private ZonedDateTime finishedDateTime;
 }
