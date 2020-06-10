@@ -36,31 +36,27 @@ class UserControllerTest {
             LocalDateTime.of(2019, 5, 20, 10, 0, 20);
 
     private final User user = User.builder()
-                                  .id(1L)
+                                  .id(USER_ID)
                                   .nickname(USER_NICKNAME)
                                   .password(PASSWORD)
-                                  .pomodoroList(null)
                                   .build();
 
     private final User user2 = User.builder()
                                    .id(2L)
                                    .nickname("artem")
                                    .password(PASSWORD)
-                                   .pomodoroList(null)
                                    .build();
 
     private final Pomodoro pomodoro = Pomodoro.builder()
                                               .id(POM_ID)
-                                              .userId(USER_ID)
+                                              .user(user)
                                               .description("test")
-                                              .complitedDate(time1)
                                               .build();
 
     private final Pomodoro pomodoro2 = Pomodoro.builder()
                                                .id(4L)
-                                               .userId(USER_ID)
+                                               .user(user)
                                                .description("test2")
-                                               .complitedDate(time2)
                                                .build();
 
     private final List<User> listOfTwoUsers = Arrays.asList(user, user2);

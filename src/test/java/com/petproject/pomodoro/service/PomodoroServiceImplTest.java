@@ -1,6 +1,7 @@
 package com.petproject.pomodoro.service;
 
 import com.petproject.pomodoro.entity.Pomodoro;
+import com.petproject.pomodoro.entity.User;
 import com.petproject.pomodoro.exceptions.BadRequestException;
 import com.petproject.pomodoro.repository.PomodoroRepository;
 import org.junit.jupiter.api.AfterEach;
@@ -34,18 +35,20 @@ class PomodoroServiceImplTest {
     private static final LocalDateTime time2 =
             LocalDateTime.of(2019, 5, 20, 10, 0, 20);
 
+    private final User user = User.builder()
+                                  .id(USER_ID)
+                                  .build();
+
     private final Pomodoro pomodoro1 = Pomodoro.builder()
-                                              .id(POM_ID)
-                                              .userId(USER_ID)
-                                              .description("test")
-                                              .complitedDate(time1)
-                                              .build();
+                                               .id(POM_ID)
+                                               .user(user)
+                                               .description("test")
+                                               .build();
 
     private final Pomodoro pomodoro2 = Pomodoro.builder()
                                                .id(4L)
-                                               .userId(USER_ID)
+                                               .user(user)
                                                .description("test2")
-                                               .complitedDate(time2)
                                                .build();
 
     private final List<Pomodoro> pomodoroListOfSizeTwo = Arrays.asList(pomodoro1, pomodoro2);

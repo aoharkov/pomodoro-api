@@ -34,21 +34,18 @@ class UserServiceImplTest {
                                    .id(1L)
                                    .nickname("admin")
                                    .password(PASSWORD)
-                                   .pomodoroList(null)
                                    .build();
 
     private final User user2 = User.builder()
                                    .id(2L)
                                    .nickname("artem")
                                    .password(PASSWORD)
-                                   .pomodoroList(null)
                                    .build();
 
     private final User user3 = User.builder()
                                    .id(USER3_ID)
                                    .nickname(USER3_NICKNAME)
                                    .password(PASSWORD)
-                                   .pomodoroList(null)
                                    .build();
 
     private final List<User> listOfTwoUsers = Arrays.asList(user1, user2);
