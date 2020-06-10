@@ -1,18 +1,15 @@
 INSERT INTO users VALUES
-(1, 'admin', '$2a$10$Kk/uIwUpwQNEvj8rsBcj0uSyw1yYohrzgAwxBjP/5Jg3y5GVsLejS'),
-(2, 'artem', '$2a$10$MfntVMztuRLec8s/fviRPe1FtlZVhgRAlfjS4XYwJUTmvr5vsFZ36');
+(1, 'admin@gmail.com','admin', '$2a$10$Kk/uIwUpwQNEvj8rsBcj0uSyw1yYohrzgAwxBjP/5Jg3y5GVsLejS', 'ADMIN',
+'2020-05-10 10:23:54+02', NULL, 1500),
+(2, 'user@gmail.com', 'user', '$2a$10$MfntVMztuRLec8s/fviRPe1FtlZVhgRAlfjS4XYwJUTmvr5vsFZ36', 'USER',
+'2020-06-10 10:23:54+02', NULL, 1500);
+
+INSERT INTO spheres VALUES
+(1, 'default');
+
+INSERT INTO categories VALUES
+(1, 2, 1, 'work'),
+(2, 2, 1, 'sport');
 
 INSERT INTO pomodoros VALUES
-(1, 1, 'test', 25, '2019-05-19 9:00:20'),
-(2, 2, 'rest-hw1', 25, '2019-05-20 9:30:20'),
-(3, 2,'rest-hw1', 25, '2019-05-20 10:00:21'),
-(4, 2,'rest-hw1', 25, '2019-05-20 10:30:22'),
-(5, 2,'rest-hw2', 25, '2019-05-20 11:00:23');
-
-insert into roles VALUES
-(1, 'ADMIN'),
-(2, 'USER');
-
-INSERT INTO users_roles values
-(1, 2),
-(2, 2);
+(1, 2, 1, 'do something useful', 1500, 0, 'STARTED', '2020-06-10 10:30:54+02', '2020-06-10 10:30:54+02', NULL)
