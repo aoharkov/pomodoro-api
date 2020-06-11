@@ -1,6 +1,4 @@
 spring:
-  autoconfigure:
-    exclude: org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration
   datasource:
     data: classpath*:database/defaultData.sql
     driver-class-name: org.postgresql.Driver
@@ -17,3 +15,6 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
+jwt:
+  secret: secret
+  expiration-seconds: 36000
