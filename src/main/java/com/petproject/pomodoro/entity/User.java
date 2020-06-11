@@ -56,6 +56,6 @@ public class User {
     @Column(name = "storage")
     private JSONObject storage;
 
-    @Column(name = "default_lenght", nullable = false)
+    @Column(name = "default_length", nullable = false)
     private Integer defaultLenght;
 }
