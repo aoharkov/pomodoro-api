@@ -1,0 +1,19 @@
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration
+  datasource:
+    data: classpath*:database/defaultData.sql
+    driver-class-name: org.postgresql.Driver
+    initialization-mode: ALWAYS
+    password: root
+    schema: classpath*:database/schema.sql
+    url: jdbc:postgresql://localhost:5432/pomodoro
+    username: root
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
