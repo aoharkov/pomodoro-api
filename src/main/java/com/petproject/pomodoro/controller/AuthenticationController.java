@@ -39,11 +39,7 @@ public class AuthenticationController {
         String username = requestDto.getUsername();
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, requestDto.getPassword()));
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-
-        if (userDetails == null) {
-            throw new UsernameNotFoundException("User with username: " + username + " not found");
-        }
-
+        
         String token = jwtProcessor.createJwt(username,
                                               (Collection<GrantedAuthority>) userDetails.getAuthorities());
 
