@@ -1,16 +1,13 @@
 package com.petproject.pomodoro.controller;
 
 import com.petproject.pomodoro.exceptions.BadRequestException;
-import com.petproject.pomodoro.exceptions.UserNotFoundException;
 import com.petproject.pomodoro.exceptions.SuchElementAlreadyExistsException;
+import com.petproject.pomodoro.exceptions.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.DisabledException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
 public class ExceptionHandlingController {
