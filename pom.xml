@@ -23,7 +23,8 @@
 			**/entity/*,
 			**/config/**/*,
 			**/PomodoroApplication.java,
-			**/*Exception.java
+			**/*Exception.java,
+			**/web/dto/*
 		</sonar.coverage.exclusions>
 	</properties>
 
