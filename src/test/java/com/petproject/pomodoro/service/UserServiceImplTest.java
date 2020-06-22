@@ -4,6 +4,7 @@ import com.petproject.pomodoro.entity.User;
 import com.petproject.pomodoro.exceptions.UserNotFoundException;
 import com.petproject.pomodoro.exceptions.SuchElementAlreadyExistsException;
 import com.petproject.pomodoro.repository.UserRepository;
+import com.petproject.pomodoro.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

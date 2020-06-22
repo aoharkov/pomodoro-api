@@ -1,8 +1,9 @@
-package com.petproject.pomodoro.service;
+package com.petproject.pomodoro.service.impl;
 
 import com.petproject.pomodoro.entity.Pomodoro;
 import com.petproject.pomodoro.exceptions.BadRequestException;
 import com.petproject.pomodoro.repository.PomodoroRepository;
+import com.petproject.pomodoro.service.PomodoroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

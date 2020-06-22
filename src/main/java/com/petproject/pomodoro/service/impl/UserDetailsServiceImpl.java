@@ -1,4 +1,4 @@
-package com.petproject.pomodoro.service;
+package com.petproject.pomodoro.service.impl;
 
 import com.petproject.pomodoro.config.UserPrincipal;
 import com.petproject.pomodoro.entity.User;
