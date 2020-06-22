@@ -1,9 +1,10 @@
-package com.petproject.pomodoro.service;
+package com.petproject.pomodoro.service.impl;
 
 import com.petproject.pomodoro.entity.User;
 import com.petproject.pomodoro.exceptions.UserNotFoundException;
 import com.petproject.pomodoro.exceptions.SuchElementAlreadyExistsException;
 import com.petproject.pomodoro.repository.UserRepository;
+import com.petproject.pomodoro.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

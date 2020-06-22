@@ -4,6 +4,7 @@ import com.petproject.pomodoro.entity.Pomodoro;
 import com.petproject.pomodoro.entity.User;
 import com.petproject.pomodoro.exceptions.BadRequestException;
 import com.petproject.pomodoro.repository.PomodoroRepository;
+import com.petproject.pomodoro.service.impl.PomodoroServiceImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
