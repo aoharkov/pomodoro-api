@@ -8,10 +8,10 @@
 ### A short guide on how to use Docker container with PostgresSQL for running locally our application
 
 1.	Using cmd go to the project root of your local repository
-2.	Create an image from Dockerfile with the following command (don’t forget to copy the last dot):
-``` docker build -t pomodoro-db:dd.mm.yy . ```
+2.	Change image tag if needed to today date in docker-compose.yml:
+``` image: pomodoro-db:dd.mm.yy ```
 3.	Create and run a container from image with the following command: 
-``` docker run --name pomodoro-db -e POSTGRES_PASSWORD=root -dp 5432:5432 pomodoro-db:dd.mm.yy ```
+``` docker-compose up -d ```
 4.	Now the container is running.
 To run locally our application type ``` mvn spring-boot:run ```
 To use locally our application go to  ``` http://localhost:8088/ ```
